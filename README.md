@@ -8,8 +8,8 @@ Constrained Randomization: Generates random read and write operations with contr
 Mailboxes for Communication: Facilitates communication between various testbench components.
 Scoreboarding: Ensures that data read from the FIFO matches the data written to it.
 
-# Components:
-# Transaction
+## Components:
+# Transaction:
 The transaction class represents a single operation (either read or write) in the testbench. It includes various fields to model the state and data associated with an operation.
 
 oper: Randomized bit controlling whether the transaction is a read or write.

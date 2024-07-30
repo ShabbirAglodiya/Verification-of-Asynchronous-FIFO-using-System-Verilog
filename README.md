@@ -8,8 +8,8 @@ Constrained Randomization: Generates random read and write operations with contr
 Mailboxes for Communication: Facilitates communication between various testbench components.
 Scoreboarding: Ensures that data read from the FIFO matches the data written to it.
 
-## Components:
-# Transaction:
+# Components:
+## Transaction:
 The transaction class represents a single operation (either read or write) in the testbench. It includes various fields to model the state and data associated with an operation.
 
 oper: Randomized bit controlling whether the transaction is a read or write.
@@ -17,13 +17,13 @@ rd, wr: Read and write control bits.
 data_in, data_out: 8-bit data input and output.
 full, empty: Flags indicating FIFO status.
 
-# Generator:
+## Generator:
 The generator class creates random transactions and sends them to the driver via a mailbox. It generates a specified number of transactions based on a count parameter.
 
 mbx: Mailbox used to send transactions to the driver.
 next, done: Events to signal when to proceed and when generation is complete.
 
-# Driver:
+## Driver:
 The driver class interacts with the DUT (Device Under Test), applying transactions received from the generator. It implements read and write operations based on the control signals in each transaction.
 
 fif: Virtual interface to the FIFO.
@@ -31,20 +31,20 @@ reset(): Resets the DUT.
 write(): Performs a write operation to the FIFO.
 read(): Performs a read operation from the FIFO.
 
-# Monitor:
+## Monitor:
 The monitor class observes the interactions between the driver and the DUT, capturing relevant information and forwarding it to the scoreboard.
 
 fif: Virtual interface to the FIFO.
 mbx: Mailbox used to send captured transactions to the scoreboard.
 
-# Scoreboard:
+## Scoreboard:
 The scoreboard class is responsible for verifying that the FIFO behaves as expected by comparing the expected data with the actual output from the DUT.
 
 din: Queue to store expected data values.
 err: Counter for mismatched data errors.
 run(): Continuously checks for mismatches and logs results.
 
-# Environment:
+## Environment:
 The environment class instantiates and connects all the other components, ensuring they work together seamlessly to execute the testbench.
 
 pre_test(): Prepares the DUT for testing by resetting it.
